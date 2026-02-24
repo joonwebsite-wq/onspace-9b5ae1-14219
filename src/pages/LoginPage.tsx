@@ -111,8 +111,14 @@ export function LoginPage() {
 
         <div className="mt-6 text-center">
           <button
+            onClick={() => navigate('/register-admin')}
+            className="text-saffron hover:underline text-sm mb-2 block"
+          >
+            Don't have an account? Register here
+          </button>
+          <button
             onClick={() => navigate('/')}
-            className="text-saffron hover:underline text-sm"
+            className="text-gray-600 hover:underline text-sm"
           >
             ← Back to Home
           </button>

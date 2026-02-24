@@ -2,17 +2,18 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
-import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image } from 'lucide-react';
+import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3 } from 'lucide-react';
+import { DashboardOverview } from './DashboardOverview';
 import { ApplicantsPanel } from './ApplicantsPanel';
 import { LegalDocsPanel } from './LegalDocsPanel';
 import { GalleryPanel } from './GalleryPanel';
 
-type Tab = 'applicants' | 'legal' | 'gallery';
+type Tab = 'overview' | 'applicants' | 'legal' | 'gallery';
 
 export function AdminDashboard() {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<Tab>('applicants');
+  const [activeTab, setActiveTab] = useState<Tab>('overview');
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -63,6 +64,17 @@ export function AdminDashboard() {
         {/* Tabs */}
         <div className="flex flex-wrap gap-4 mb-8 bg-white p-2 rounded-lg shadow">
           <button
+            onClick={() => setActiveTab('overview')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              activeTab === 'overview'
+                ? 'bg-saffron text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            <BarChart3 size={20} />
+            Dashboard
+          </button>
+          <button
             onClick={() => setActiveTab('applicants')}
             className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
               activeTab === 'applicants'
@@ -98,6 +110,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Tab Content */}
+        {activeTab === 'overview' && <DashboardOverview />}
         {activeTab === 'applicants' && <ApplicantsPanel />}
         {activeTab === 'legal' && <LegalDocsPanel />}
         {activeTab === 'gallery' && <GalleryPanel />}
