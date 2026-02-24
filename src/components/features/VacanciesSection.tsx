@@ -1,87 +1,152 @@
-import { Briefcase, MapPin, IndianRupee } from 'lucide-react';
+import { User, MapPin, Map } from 'lucide-react';
 
 export function VacanciesSection() {
-  const vacancies = [
+  const positions = [
     {
+      icon: User,
       title: 'State Project Manager',
-      requirements: 'Graduate + 5 Years Experience',
+      titleHindi: 'राज्य परियोजना प्रबंधक',
+      qualification: 'Graduate + 5 Years Experience',
+      qualificationHindi: 'स्नातक + 5 वर्ष अनुभव',
+      qualificationDetail: '(Marketing & Team Handling)',
+      qualificationDetailHindi: 'विपणन + 5 वर्ष अनुभव',
       salary: '₹80,000',
-      ta: null,
-      color: 'from-saffron to-orange-600',
+      salaryDetail: '(including TA)',
+      ta: '',
+      featured: true,
     },
     {
+      icon: MapPin,
       title: 'District Project Manager',
-      requirements: 'Graduate + 2 Years Experience',
+      titleHindi: 'जिला परियोजना प्रबंधक',
+      qualification: 'Graduate + 2 Years Experience',
+      qualificationHindi: 'स्नातक + 2 वर्ष अनुभव',
+      qualificationDetail: '',
+      qualificationDetailHindi: '',
       salary: '₹40,000',
+      salaryDetail: '',
       ta: '+ ₹10,000 TA',
-      color: 'from-indiaGreen to-green-700',
+      featured: false,
     },
     {
+      icon: Map,
       title: 'Project Facilitator',
-      requirements: 'Graduate',
+      titleHindi: 'परियोजना सहायक',
+      qualification: 'Graduate',
+      qualificationHindi: 'स्नातक',
+      qualificationDetail: '',
+      qualificationDetailHindi: '',
       salary: '₹27,000',
+      salaryDetail: '',
       ta: '+ ₹3,000 TA',
-      color: 'from-navy to-blue-900',
+      featured: false,
     },
   ];
 
   const scrollToApply = () => {
-    const element = document.getElementById('apply');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const applySection = document.getElementById('apply');
+    applySection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="vacancies" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container-custom">
+    <section id="vacancies" className="section-padding bg-gray-50">
+      <div className="container-custom max-w-6xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
-            Job Vacancies Available
+          <p className="text-saffron text-sm font-bold mb-3 tracking-wide uppercase">
+            CAREER OPPORTUNITIES
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-3">
+            Current Open Positions
           </h2>
-          <div className="w-24 h-1 bg-saffron mx-auto mb-6"></div>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Join our mission to transform India's energy landscape. Multiple positions available across 6 states.
+          <p className="text-gray-600 text-sm">
+            वर्तमान खुली पदों की जानकारी
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {vacancies.map((vacancy, index) => (
+        {/* Position Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {positions.map((position, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
-              <div className={`bg-gradient-to-r ${vacancy.color} p-6 text-white`}>
-                <Briefcase size={40} className="mb-3" />
-                <h3 className="text-2xl font-bold mb-2">{vacancy.title}</h3>
-              </div>
-              
-              <div className="p-6">
-                <div className="mb-4">
-                  <p className="text-gray-600 text-sm mb-1">Requirements:</p>
-                  <p className="text-navy font-semibold">{vacancy.requirements}</p>
-                </div>
-
-                <div className="mb-6 bg-gradient-to-r from-saffron/10 to-transparent p-4 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <IndianRupee size={20} className="text-saffron" />
-                    <p className="text-sm text-gray-600">Salary Package:</p>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-navy to-navy-light text-white p-5 relative">
+                {position.featured && (
+                  <div className="absolute top-3 right-3">
+                    <span className="bg-saffron text-white text-xs font-bold px-3 py-1 rounded-full">
+                      ⭐ Featured Position
+                    </span>
                   </div>
-                  <p className="text-3xl font-bold text-navy">{vacancy.salary}</p>
-                  {vacancy.ta && (
-                    <p className="text-indiaGreen font-semibold mt-1">{vacancy.ta}</p>
-                  )}
+                )}
+                <div className="flex items-center gap-3 mt-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
+                    <position.icon size={24} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold leading-tight">{position.title}</h3>
+                    <p className="text-xs text-gray-200">{position.titleHindi}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 space-y-4">
+                {/* Qualification */}
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-saffron">🎓</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-semibold uppercase mb-1">QUALIFICATION</p>
+                    <p className="text-sm font-semibold text-navy leading-tight">
+                      {position.qualification}
+                      {position.qualificationDetail && (
+                        <span className="block text-xs text-gray-600 mt-0.5">{position.qualificationDetail}</span>
+                      )}
+                    </p>
+                    <p className="text-xs text-gray-600">{position.qualificationHindi}</p>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-gray-600 mb-6">
-                  <MapPin size={18} />
-                  <p className="text-sm">Rajasthan, AP, Telangana, Karnataka, TN, Kerala</p>
+                {/* Salary */}
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-saffron">₹</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-semibold uppercase mb-1">SALARY</p>
+                    <p className="text-2xl font-bold text-saffron leading-tight">
+                      {position.salary}
+                      {position.salaryDetail && (
+                        <span className="block text-xs text-gray-600 font-normal">{position.salaryDetail}</span>
+                      )}
+                    </p>
+                    {position.ta && (
+                      <p className="text-sm text-gray-700 mt-1">{position.ta}</p>
+                    )}
+                  </div>
                 </div>
 
+                {/* Apply Button */}
                 <button
                   onClick={scrollToApply}
-                  className="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                  className="w-full bg-saffron hover:bg-saffron-dark text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                 >
-                  Apply Now
+                  Apply Now <span className="text-xs">(अभी आवेदन करें)</span>
                 </button>
+
+                {/* WhatsApp Button */}
+                <a
+                  href="https://wa.me/917073741421"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 border-2 border-saffron text-saffron hover:bg-saffron/5 font-semibold py-3 px-6 rounded-lg transition-all duration-200"
+                >
+                  <span>💬</span>
+                  <span>Ask on WhatsApp</span>
+                </a>
               </div>
             </div>
           ))}
