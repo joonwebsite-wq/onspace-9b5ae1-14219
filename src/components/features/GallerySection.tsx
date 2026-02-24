@@ -116,22 +116,23 @@ export function GallerySection() {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-2 md:gap-3">
             {filteredImages.map((image) => (
               <div
                 key={image.id}
                 onClick={() => setLightboxImage(image.image_url)}
-                className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group hover:shadow-xl transition-all duration-300 bg-gray-100"
+                className="relative rounded-lg overflow-hidden cursor-pointer group hover:shadow-xl transition-all duration-300 bg-gray-100"
+                style={{ paddingBottom: '100%' }}
               >
                 <img
                   src={image.image_url}
                   alt={image.title}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 w-full">
-                    <p className="text-white font-semibold text-sm">{image.title}</p>
-                    <p className="text-gray-300 text-xs">{image.category}</p>
+                  <div className="p-2 md:p-4 w-full">
+                    <p className="text-white font-semibold text-xs md:text-sm">{image.title}</p>
+                    <p className="text-gray-300 text-[10px] md:text-xs">{image.category}</p>
                   </div>
                 </div>
               </div>
