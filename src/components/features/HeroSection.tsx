@@ -58,7 +58,7 @@ export function HeroSection() {
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             PM Surya Ghar Muft Bijli Yojana
-            <span className="block text-saffron mt-2">Recruitment 2025</span>
+            <span className="block text-saffron mt-2">Recruitment 2026</span>
           </h1>
 
           {/* Subheadline */}
