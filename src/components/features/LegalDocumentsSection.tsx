@@ -6,17 +6,18 @@ import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
+// Document names MUST match exactly with LEGAL_DOCUMENT_TYPES in types/index.ts
 const REQUIRED_DOCUMENTS = [
-  { id: 'organization_pan', name: 'Organization PAN Card', nameHindi: 'संस्था पैन कार्ड' },
-  { id: 'owner_photo', name: 'Owner Photo', nameHindi: 'मालिक की फोटो' },
-  { id: 'did', name: 'DID / Registration ID', nameHindi: 'डीआईडी / पंजीकरण आईडी' },
-  { id: 'agreement', name: 'Agreement Document', nameHindi: 'समझौता दस्तावेज' },
-  { id: '12a', name: '12A Certificate', nameHindi: '12A प्रमाण पत्र' },
-  { id: '80g', name: '80G Certificate', nameHindi: '80G प्रमाण पत्र' },
-  { id: 'ngo_darpan', name: 'NGO Darpan', nameHindi: 'एनजीओ दर्पण' },
-  { id: 'niti_aayog', name: 'NITI Aayog', nameHindi: 'नीति आयोग' },
-  { id: 'owner_pan', name: 'Owner PAN Card', nameHindi: 'मालिक पैन कार्ड' },
-  { id: 'cancel_cheque', name: 'Cancel Cheque', nameHindi: 'कैंसिल चेक' },
+  { dbName: 'Organization PAN', name: 'Organization PAN Card', nameHindi: 'संस्था पैन कार्ड' },
+  { dbName: 'Owner Photo', name: 'Owner Photo', nameHindi: 'मालिक की फोटो' },
+  { dbName: 'DID', name: 'DID / Registration ID', nameHindi: 'डीआईडी / पंजीकरण आईडी' },
+  { dbName: 'Agreement', name: 'Agreement Document', nameHindi: 'समझौता दस्तावेज' },
+  { dbName: '12A', name: '12A Certificate', nameHindi: '12A प्रमाण पत्र' },
+  { dbName: '80G', name: '80G Certificate', nameHindi: '80G प्रमाण पत्र' },
+  { dbName: 'NGO Darpan', name: 'NGO Darpan', nameHindi: 'एनजीओ दर्पण' },
+  { dbName: 'NITI Aayog', name: 'NITI Aayog', nameHindi: 'नीति आयोग' },
+  { dbName: 'Owner PAN', name: 'Owner PAN Card', nameHindi: 'मालिक पैन कार्ड' },
+  { dbName: 'Cancel Cheque', name: 'Cancel Cheque', nameHindi: 'कैंसिल चेक' },
 ];
 
 export function LegalDocumentsSection() {
@@ -45,8 +46,9 @@ export function LegalDocumentsSection() {
     setLoading(false);
   };
 
-  const getDocumentByType = (docId: string) => {
-    return documents.find((doc) => doc.name === docId);
+  const getDocumentByType = (dbName: string) => {
+    // Match documents by the exact name stored in database
+    return documents.find((doc) => doc.name === dbName);
   };
 
   const handlePreview = (doc: LegalDocument) => {
@@ -108,12 +110,12 @@ export function LegalDocumentsSection() {
           {/* Documents Grid */}
           <div className="grid md:grid-cols-2 gap-4">
             {REQUIRED_DOCUMENTS.map((reqDoc) => {
-              const uploadedDoc = getDocumentByType(reqDoc.id);
+              const uploadedDoc = getDocumentByType(reqDoc.dbName);
               const isUploaded = !!uploadedDoc;
 
               return (
                 <div
-                  key={reqDoc.id}
+                  key={reqDoc.dbName}
                   className={`bg-white border-2 rounded-xl p-5 transition-all duration-200 ${
                     isUploaded
                       ? 'border-green-200 hover:shadow-md'
@@ -201,10 +203,10 @@ export function LegalDocumentsSection() {
             <div className="bg-gradient-to-r from-navy to-navy-light text-white p-6 flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold mb-1">
-                  {REQUIRED_DOCUMENTS.find((d) => d.id === previewDoc.name)?.name || previewDoc.name}
+                  {REQUIRED_DOCUMENTS.find((d) => d.dbName === previewDoc.name)?.name || previewDoc.name}
                 </h3>
                 <p className="text-sm text-gray-200">
-                  {REQUIRED_DOCUMENTS.find((d) => d.id === previewDoc.name)?.nameHindi}
+                  {REQUIRED_DOCUMENTS.find((d) => d.dbName === previewDoc.name)?.nameHindi}
                 </p>
               </div>
               <button
