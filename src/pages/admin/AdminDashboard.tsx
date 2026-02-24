@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
-import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3, MessageSquare } from 'lucide-react';
+import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3, MessageSquare, UserCog } from 'lucide-react';
 import { DashboardOverview } from './DashboardOverview';
 import { ApplicantsPanel } from './ApplicantsPanel';
 import { LegalDocsPanel } from './LegalDocsPanel';
 import { GalleryPanel } from './GalleryPanel';
 import { TestimonialsPanel } from './TestimonialsPanel';
+import { StateManagersPanel } from './StateManagersPanel';
 
-type Tab = 'overview' | 'applicants' | 'legal' | 'gallery' | 'testimonials';
+type Tab = 'overview' | 'applicants' | 'legal' | 'gallery' | 'testimonials' | 'managers';
 
 export function AdminDashboard() {
   const { user, loading: authLoading } = useAuth();
@@ -119,6 +120,17 @@ export function AdminDashboard() {
             <MessageSquare size={20} />
             Testimonials
           </button>
+          <button
+            onClick={() => setActiveTab('managers')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              activeTab === 'managers'
+                ? 'bg-saffron text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            <UserCog size={20} />
+            State Managers
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -127,6 +139,7 @@ export function AdminDashboard() {
         {activeTab === 'legal' && <LegalDocsPanel />}
         {activeTab === 'gallery' && <GalleryPanel />}
         {activeTab === 'testimonials' && <TestimonialsPanel />}
+        {activeTab === 'managers' && <StateManagersPanel />}
       </div>
     </div>
   );

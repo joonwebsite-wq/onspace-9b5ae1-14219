@@ -10,6 +10,7 @@ import { ApplicationSection } from '@/components/features/ApplicationSection';
 import { ProcessSection } from '@/components/features/ProcessSection';
 import { FAQSection } from '@/components/features/FAQSection';
 import { TestimonialsSection } from '@/components/features/TestimonialsSection';
+import { StateManagersSection } from '@/components/features/StateManagersSection';
 import { LegalDocumentsSection } from '@/components/features/LegalDocumentsSection';
 import { GallerySection } from '@/components/features/GallerySection';
 
@@ -26,6 +27,7 @@ export function HomePage() {
       <ProcessSection />
       <FAQSection />
       <TestimonialsSection />
+      <StateManagersSection />
       <LegalDocumentsSection />
       <GallerySection />
       <Footer />
