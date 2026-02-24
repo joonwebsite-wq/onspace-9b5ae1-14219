@@ -1,32 +1,56 @@
+import { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
+
+interface Testimonial {
+  id: string;
+  name: string;
+  state: string;
+  position: string;
+  image_url: string;
+  review: string;
+  rating: number;
+  is_active: boolean;
+}
 
 export function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: 'Rajesh Kumar',
-      state: 'Rajasthan',
-      position: 'District Project Manager',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop',
-      review: 'Great opportunity to work on a government project. The support from the team has been excellent.',
-      rating: 5,
-    },
-    {
-      name: 'Priya Sharma',
-      state: 'Karnataka',
-      position: 'Project Facilitator',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
-      review: 'Professional work environment and timely salary. Happy to be part of clean energy mission.',
-      rating: 5,
-    },
-    {
-      name: 'Amit Patel',
-      state: 'Telangana',
-      position: 'State Project Manager',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
-      review: 'Challenging and rewarding role. Making real impact on sustainable energy adoption in our state.',
-      rating: 5,
-    },
-  ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  const fetchTestimonials = async () => {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching testimonials:', error);
+      toast.error('Failed to load testimonials');
+    } else {
+      setTestimonials(data || []);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="container-custom text-center">
+          <p className="text-gray-600">Loading testimonials...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   return (
     <section className="section-padding bg-gradient-to-br from-gray-50 to-gray-100">
@@ -49,7 +73,7 @@ export function TestimonialsSection() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <img
-                  src={testimonial.image}
+                  src={testimonial.image_url}
                   alt={testimonial.name}
                   className="w-16 h-16 rounded-full object-cover border-2 border-saffron"
                 />

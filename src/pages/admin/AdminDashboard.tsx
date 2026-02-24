@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
-import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3 } from 'lucide-react';
+import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3, MessageSquare } from 'lucide-react';
 import { DashboardOverview } from './DashboardOverview';
 import { ApplicantsPanel } from './ApplicantsPanel';
 import { LegalDocsPanel } from './LegalDocsPanel';
 import { GalleryPanel } from './GalleryPanel';
+import { TestimonialsPanel } from './TestimonialsPanel';
 
-type Tab = 'overview' | 'applicants' | 'legal' | 'gallery';
+type Tab = 'overview' | 'applicants' | 'legal' | 'gallery' | 'testimonials';
 
 export function AdminDashboard() {
   const { user, loading: authLoading } = useAuth();
@@ -107,6 +108,17 @@ export function AdminDashboard() {
             <Image size={20} />
             Gallery
           </button>
+          <button
+            onClick={() => setActiveTab('testimonials')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              activeTab === 'testimonials'
+                ? 'bg-saffron text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            <MessageSquare size={20} />
+            Testimonials
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -114,6 +126,7 @@ export function AdminDashboard() {
         {activeTab === 'applicants' && <ApplicantsPanel />}
         {activeTab === 'legal' && <LegalDocsPanel />}
         {activeTab === 'gallery' && <GalleryPanel />}
+        {activeTab === 'testimonials' && <TestimonialsPanel />}
       </div>
     </div>
   );

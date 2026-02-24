@@ -73,3 +73,18 @@ export const GALLERY_CATEGORIES = [
   'Events',
   'Certificates',
 ] as const;
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  state: string;
+  position: string;
+  image_url: string;
+  review: string;
+  rating: number;
+  is_active: boolean;
+  display_order: number;
+  uploaded_by?: string;
+  created_at: string;
+  updated_at: string;
+}
