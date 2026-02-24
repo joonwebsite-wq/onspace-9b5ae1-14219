@@ -1,0 +1,35 @@
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
+import { HeroSection } from '@/components/features/HeroSection';
+import { AboutSection } from '@/components/features/AboutSection';
+import { VacanciesSection } from '@/components/features/VacanciesSection';
+import { RequirementsSection } from '@/components/features/RequirementsSection';
+import { UrgencyBanner } from '@/components/features/UrgencyBanner';
+import { ApplicationSection } from '@/components/features/ApplicationSection';
+import { ProcessSection } from '@/components/features/ProcessSection';
+import { FAQSection } from '@/components/features/FAQSection';
+import { TestimonialsSection } from '@/components/features/TestimonialsSection';
+import { LegalDocumentsSection } from '@/components/features/LegalDocumentsSection';
+import { GallerySection } from '@/components/features/GallerySection';
+
+export function HomePage() {
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <VacanciesSection />
+      <RequirementsSection />
+      <UrgencyBanner />
+      <ApplicationSection />
+      <ProcessSection />
+      <FAQSection />
+      <TestimonialsSection />
+      <LegalDocumentsSection />
+      <GallerySection />
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+}
