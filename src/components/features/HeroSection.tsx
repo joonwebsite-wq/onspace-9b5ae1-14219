@@ -56,14 +56,15 @@ export function HeroSection() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            PM Surya Ghar Muft Bijli Yojana
-            <span className="block text-saffron mt-2">Recruitment 2026</span>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            State & District Level Government Project
+            <span className="block text-saffron mt-3 text-4xl md:text-6xl lg:text-7xl">PM Surya Ghar Muft Bijli Yojana</span>
+            <span className="block text-white mt-2 text-2xl md:text-4xl lg:text-5xl">Recruitment for Vendors 2026</span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 font-semibold">
-            Government Project | State & District Level Vacancies Open
+          {/* Hindi Subheadline */}
+          <p className="text-2xl md:text-3xl text-saffron mb-8 font-bold">
+            राज्य एवं जिला स्तर प्रोजेक्ट भर्ती 2026
           </p>
 
           {/* Highlights */}
