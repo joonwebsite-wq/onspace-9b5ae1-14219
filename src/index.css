@@ -48,14 +48,53 @@
   
   .govt-badge {
     @apply inline-flex items-center gap-2 px-4 py-2 bg-indiaGreen text-white rounded-full text-sm font-semibold shadow-md;
+    animation: badge-pulse 2s ease-in-out infinite;
   }
   
   .cta-button {
-    @apply bg-saffron hover:bg-saffron-dark text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105;
+    @apply bg-saffron hover:bg-saffron-dark text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl;
+    position: relative;
+    overflow: hidden;
+    animation: button-glow 3s ease-in-out infinite;
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  .cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+  
+  .cta-button:active {
+    transform: translateY(0) scale(0.98);
   }
   
   .whatsapp-button {
     @apply bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2 transition-all duration-300 hover:shadow-lg;
+    animation: whatsapp-bounce 2s ease-in-out infinite;
+  }
+  
+  .whatsapp-button:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .whatsapp-button:active {
+    transform: scale(0.95);
   }
 }
 
@@ -80,4 +119,92 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #E55520;
+}
+
+/* Button Animations */
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes button-glow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.6);
+  }
+}
+
+@keyframes whatsapp-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Universal Button Animations */
+button, a.cta-button, a.whatsapp-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+button:hover:not(:disabled), a.cta-button:hover, a.whatsapp-button:hover {
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled), a.cta-button:active, a.whatsapp-button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Add shine effect on hover for primary buttons */
+.bg-saffron, .bg-indiaGreen, .bg-navy {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-saffron::after, .bg-indiaGreen::after, .bg-navy::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.bg-saffron:hover::after, .bg-indiaGreen:hover::after, .bg-navy:hover::after {
+  left: 100%;
 }
