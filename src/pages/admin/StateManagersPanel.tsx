@@ -95,24 +95,39 @@ export function StateManagersPanel() {
   const uploadPhoto = async (): Promise<string | null> => {
     if (!photoFile) return null;
 
-    const fileExt = photoFile.name.split('.').pop();
-    const fileName = `managers/${formData.state.toLowerCase().replace(/\s+/g, '-')}/${Date.now()}.${fileExt}`;
+    try {
+      const fileExt = photoFile.name.split('.').pop();
+      const fileName = `${formData.state.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}.${fileExt}`;
 
-    const { data, error } = await supabase.storage
-      .from('manager-photos')
-      .upload(fileName, photoFile);
+      console.log('Uploading photo to manager-photos bucket:', fileName);
 
-    if (error) {
-      console.error('Photo upload error:', error);
-      toast.error('Failed to upload photo');
+      const { data, error } = await supabase.storage
+        .from('manager-photos')
+        .upload(fileName, photoFile, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) {
+        console.error('Photo upload error:', error);
+        toast.error(`Failed to upload photo: ${error.message}`);
+        return null;
+      }
+
+      console.log('Upload successful, getting public URL for:', fileName);
+
+      const { data: publicUrlData } = supabase.storage
+        .from('manager-photos')
+        .getPublicUrl(fileName);
+
+      console.log('Public URL generated:', publicUrlData.publicUrl);
+
+      return publicUrlData.publicUrl;
+    } catch (err: any) {
+      console.error('Photo upload exception:', err);
+      toast.error(`Upload failed: ${err.message || 'Unknown error'}`);
       return null;
     }
-
-    const { data: { publicUrl } } = supabase.storage
-      .from('manager-photos')
-      .getPublicUrl(fileName);
-
-    return publicUrl;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
