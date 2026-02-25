@@ -13,6 +13,7 @@ import { TestimonialsSection } from '@/components/features/TestimonialsSection';
 import { StateManagersSection } from '@/components/features/StateManagersSection';
 import { LegalDocumentsSection } from '@/components/features/LegalDocumentsSection';
 import { GallerySection } from '@/components/features/GallerySection';
+import { VideoSection } from '@/components/features/VideoSection';
 
 export function HomePage() {
   return (
@@ -25,6 +26,7 @@ export function HomePage() {
       <UrgencyBanner />
       <ApplicationSection />
       <ProcessSection />
+      <VideoSection />
       <FAQSection />
       <TestimonialsSection />
       <StateManagersSection />
