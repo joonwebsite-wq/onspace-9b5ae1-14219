@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
+  // Use base path for BrowserRouter in production, or root for HashRouter
+  // HashRouter will use # in URL so base path isn't as critical
   base: "/onspace-9b5ae1-14219/",
 
   plugins: [react()],
