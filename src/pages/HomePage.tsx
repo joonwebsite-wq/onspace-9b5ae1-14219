@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
@@ -15,19 +16,57 @@ import { LegalDocumentsSection } from '@/components/features/LegalDocumentsSecti
 import { GallerySection } from '@/components/features/GallerySection';
 import { VideoSection } from '@/components/features/VideoSection';
 
+const LoadingFallback = () => (
+  <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
+    Loading section...
+  </div>
+);
+
 export function HomePage() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <header style={{padding: '20px', backgroundColor: '#0B1E2D', color: 'white'}}>
-        <h1>PM Surya Ghar Muft Bijli Yojana</h1>
-        <p>Recruitment 2026</p>
-      </header>
-      <main style={{flex: 1, padding: '40px', backgroundColor: '#f5f5f5'}}>
-        <p>Loading website... If you see this message, the app is rendering correctly!</p>
-      </main>
-      <footer style={{padding: '20px', backgroundColor: '#0B1E2D', color: 'white', textAlign: 'center'}}>
-        <p>&copy; 2026 Meri Pahal | All Rights Reserved</p>
-      </footer>
+      <Navbar />
+      <Suspense fallback={<LoadingFallback />}>
+        <HeroSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <AboutSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <VacanciesSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <RequirementsSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <UrgencyBanner />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <ApplicationSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <ProcessSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <VideoSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <FAQSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <TestimonialsSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <StateManagersSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <LegalDocumentsSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <GallerySection />
+      </Suspense>
+      <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
