@@ -26,7 +26,7 @@ if (supabaseUrl && supabaseAnonKey) {
       delete: async () => ({ data: null, error: null }),
     }),
     auth: {
-      onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+      onAuthStateChange: (callback: any) => ({ data: { subscription: { unsubscribe: () => {} } } }),
       getSession: async () => ({ data: { session: null }, error: null }),
       signUp: async () => ({ data: null, error: new Error('Supabase not configured') }),
       signInWithPassword: async () => ({ data: null, error: new Error('Supabase not configured') }),
