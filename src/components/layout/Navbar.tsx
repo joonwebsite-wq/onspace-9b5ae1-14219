@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +52,7 @@ export function Navbar() {
           {/* Mobile Apply Button - Centered */}
           <button
             onClick={() => scrollToSection('apply')}
+            disabled={!isHomePage}
             className="md:hidden w-full cta-button !py-3 !text-base font-bold mb-2"
           >
             Apply Now / अभी आवेदन करें
@@ -57,67 +60,102 @@ export function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
+            <Link
+              to="/"
+              className="text-navy hover:text-saffron font-medium transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              to="/jobs"
+              className="text-navy hover:text-saffron font-medium transition-colors"
+            >
+              Job Portal
+            </Link>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('vacancies')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Vacancies
             </button>
             <button
               onClick={() => scrollToSection('apply')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Apply
             </button>
             <button
               onClick={() => scrollToSection('legal')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Legal Docs
             </button>
             <button
               onClick={() => scrollToSection('gallery')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Gallery
             </button>
-            <button
-              onClick={() => scrollToSection('apply')}
-              className="cta-button"
-            >
-              Apply Now
-            </button>
+            {isHomePage && (
+              <button
+                onClick={() => scrollToSection('apply')}
+                className="cta-button"
+              >
+                Apply Now
+              </button>
+            )}
           </div>
 
           {/* Mobile Quick Links - Hidden on Desktop */}
           <div className="md:hidden flex items-center justify-around w-full gap-2 text-xs">
+            <Link
+              to="/"
+              className="text-navy hover:text-saffron font-medium transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              to="/jobs"
+              className="text-navy hover:text-saffron font-medium transition-colors"
+            >
+              Jobs
+            </Link>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('vacancies')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Vacancies
             </button>
             <button
               onClick={() => scrollToSection('legal')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Legal
             </button>
             <button
               onClick={() => scrollToSection('gallery')}
-              className="text-navy hover:text-saffron font-medium transition-colors"
+              disabled={!isHomePage}
+              className="text-navy hover:text-saffron font-medium transition-colors disabled:opacity-50"
             >
               Gallery
             </button>

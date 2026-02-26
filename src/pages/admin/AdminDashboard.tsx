@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
-import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3, MessageSquare, UserCog, Video } from 'lucide-react';
+import { Loader2, LogOut, LayoutDashboard, Users, FileText, Image, BarChart3, MessageSquare, UserCog, Video, Briefcase, UserCheck } from 'lucide-react';
 import { DashboardOverview } from './DashboardOverview';
 import { ApplicantsPanel } from './ApplicantsPanel';
 import { LegalDocsPanel } from './LegalDocsPanel';
@@ -10,8 +10,10 @@ import { GalleryPanel } from './GalleryPanel';
 import { TestimonialsPanel } from './TestimonialsPanel';
 import { StateManagersPanel } from './StateManagersPanel';
 import { VideosPanel } from './VideosPanel';
+import { JobsManagementPanel } from './JobsManagementPanel';
+import { JobApplicationsPanel } from './JobApplicationsPanel';
 
-type Tab = 'overview' | 'applicants' | 'legal' | 'gallery' | 'testimonials' | 'managers' | 'videos';
+type Tab = 'overview' | 'applicants' | 'legal' | 'gallery' | 'testimonials' | 'managers' | 'videos' | 'jobs' | 'job-applications';
 
 export function AdminDashboard() {
   const { user, loading: authLoading } = useAuth();
@@ -143,6 +145,28 @@ export function AdminDashboard() {
             <Video size={20} />
             Videos
           </button>
+          <button
+            onClick={() => setActiveTab('jobs')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              activeTab === 'jobs'
+                ? 'bg-saffron text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            <Briefcase size={20} />
+            Jobs
+          </button>
+          <button
+            onClick={() => setActiveTab('job-applications')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              activeTab === 'job-applications'
+                ? 'bg-saffron text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            <UserCheck size={20} />
+            Job Applications
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -153,6 +177,8 @@ export function AdminDashboard() {
         {activeTab === 'testimonials' && <TestimonialsPanel />}
         {activeTab === 'managers' && <StateManagersPanel />}
         {activeTab === 'videos' && <VideosPanel />}
+        {activeTab === 'jobs' && <JobsManagementPanel />}
+        {activeTab === 'job-applications' && <JobApplicationsPanel />}
       </div>
     </div>
   );
