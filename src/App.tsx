@@ -10,9 +10,13 @@ import { PostJobPage } from '@/pages/PostJobPage';
 import { JobDetailsPage } from '@/pages/JobDetailsPage';
 
 function App() {
+  const basename = import.meta.env.MODE === 'production' 
+    ? '/onspace-9b5ae1-14219/' 
+    : '/';
+
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />

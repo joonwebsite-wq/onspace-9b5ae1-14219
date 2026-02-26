@@ -12,4 +12,38 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
+  build: {
+    outDir: "dist",
+    sourcemap: false,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor": [
+            "react",
+            "react-dom",
+            "react-router-dom",
+          ],
+          "ui": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-accordion",
+            "@radix-ui/react-tabs",
+          ],
+        },
+      },
+    },
+  },
+
+  server: {
+    port: 5173,
+    strictPort: false,
+    open: true,
+  },
 });
