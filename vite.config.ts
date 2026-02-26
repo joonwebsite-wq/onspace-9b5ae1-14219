@@ -3,8 +3,9 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  // GitHub Pages serves project repos at /repo-name/ 
-  base: "/onspace-9b5ae1-14219/",
+  // GitHub Pages serves project repos at /repo-name/
+  // Use environment variable for base path
+  base: process.env.NODE_ENV === 'production' ? "/onspace-9b5ae1-14219/" : "/",
 
   plugins: [react()],
 
