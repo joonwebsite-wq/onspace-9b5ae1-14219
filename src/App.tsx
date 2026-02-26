@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { AuthProvider } from '@/hooks/useAuth';
 import { HomePage } from '@/pages/HomePage';
@@ -10,13 +10,14 @@ import { PostJobPage } from '@/pages/PostJobPage';
 import { JobDetailsPage } from '@/pages/JobDetailsPage';
 
 function App() {
-  const basename = import.meta.env.MODE === 'production' 
-    ? '/onspace-9b5ae1-14219/' 
-    : '/';
+  // Use HashRouter for GitHub Pages (more reliable), BrowserRouter for dev
+  const isProduction = import.meta.env.MODE === 'production';
+  const Router = isProduction ? HashRouter : BrowserRouter;
+  const basename = !isProduction ? '/' : undefined;
 
   return (
     <AuthProvider>
-      <BrowserRouter basename={basename}>
+      <Router basename={basename}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -27,7 +28,7 @@ function App() {
           <Route path="/job/:id" element={<JobDetailsPage />} />
         </Routes>
         <Toaster position="top-right" richColors />
-      </BrowserRouter>
+      </Router>
     </AuthProvider>
   );
 }
