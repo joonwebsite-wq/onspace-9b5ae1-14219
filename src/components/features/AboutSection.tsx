@@ -1,4 +1,4 @@
-import { Building2, TrendingUp, Globe2, Percent } from 'lucide-react';
+import { Building2, TrendingUp, Globe2, Percent, Newspaper, ExternalLink } from 'lucide-react';
 
 export function AboutSection() {
   const features = [
@@ -90,6 +90,113 @@ export function AboutSection() {
                 <p className="text-xs text-gray-600">{feature.titleHindi}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Blog/News Section */}
+        <div className="mt-16 bg-gradient-to-br from-saffron/5 via-orange-50 to-saffron/5 border-2 border-saffron/20 rounded-2xl p-8 md:p-10">
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-saffron text-white p-3 rounded-lg">
+              <Newspaper size={28} />
+            </div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-navy">
+                PM Surya Ghar: Muft Bijli Yojana Rajasthan
+              </h3>
+              <p className="text-saffron font-semibold text-sm">राजस्थान के निवासियों के लिए विशेष सब्सिडी</p>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="space-y-5 text-gray-700 leading-relaxed">
+            <p className="text-lg font-semibold text-navy">
+              भारत सरकार और राजस्थान सरकार की महत्वाकांक्षी योजना - हर महीने <span className="text-saffron">300 यूनिट तक मुफ्त बिजली</span> पाएं!
+            </p>
+
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-saffron">
+              <h4 className="font-bold text-navy text-xl mb-4">💰 कुल सब्सिडी ₹95,000 तक</h4>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <span className="text-saffron text-xl">✓</span>
+                  <span><strong className="text-navy">₹78,000</strong> - केंद्र सरकार द्वारा</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-indiaGreen text-xl">✓</span>
+                  <span><strong className="text-navy">₹17,000</strong> - राजस्थान सरकार द्वारा अतिरिक्त सब्सिडी + <strong>Free Smart Meter</strong></span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg p-5 text-center shadow-md border-t-4 border-saffron">
+                <p className="text-3xl font-bold text-saffron mb-2">1.1 kW</p>
+                <p className="text-sm text-gray-600">150 यूनिट/माह मुफ्त बिजली</p>
+              </div>
+              <div className="bg-white rounded-lg p-5 text-center shadow-md border-t-4 border-indiaGreen">
+                <p className="text-3xl font-bold text-indiaGreen mb-2">2 kW</p>
+                <p className="text-sm text-gray-600">200 यूनिट/माह मुफ्त बिजली</p>
+              </div>
+              <div className="bg-white rounded-lg p-5 text-center shadow-md border-t-4 border-navy">
+                <p className="text-3xl font-bold text-navy mb-2">3 kW+</p>
+                <p className="text-sm text-gray-600">300 यूनिट/माह मुफ्त बिजली</p>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h4 className="font-bold text-navy text-lg mb-3">📋 पात्रता (Eligibility)</h4>
+              <ul className="space-y-2 text-gray-700 grid md:grid-cols-2 gap-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-saffron">✓</span> पक्का घर (Permanent House)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-saffron">✓</span> बिजली कनेक्शन (Electricity Connection)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-saffron">✓</span> बैंक खाता (Bank Account)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-saffron">✓</span> आधार कार्ड (Aadhaar Card)
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h4 className="font-bold text-navy text-lg mb-3">📄 आवश्यक दस्तावेज़ (Required Documents)</h4>
+              <div className="grid md:grid-cols-2 gap-3 text-gray-700">
+                <p>• आधार कार्ड (Aadhaar Card)</p>
+                <p>• बिजली बिल (Electricity Bill)</p>
+                <p>• बैंक पासबुक (Bank Passbook)</p>
+                <p>• पासपोर्ट साइज़ फोटो (Photo)</p>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a
+                href="https://pmsuryaghar.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-button inline-flex items-center justify-center gap-2"
+              >
+                आधिकारिक पोर्टल पर आवेदन करें
+                <ExternalLink size={18} />
+              </a>
+              <a
+                href="https://rajasthanlink.com/VanuDetails/jaipur/yojana/132436/pm-surya-ghar-muft-bijli-yojana-rajasthan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-indiaGreen hover:bg-indiaGreen-dark text-white font-bold px-8 py-4 rounded-lg transition-all inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                राजस्थान पात्रता चेक करें
+                <ExternalLink size={18} />
+              </a>
+            </div>
+
+            <div className="bg-gradient-to-r from-saffron to-red-600 text-white rounded-xl p-6 text-center shadow-lg">
+              <p className="text-2xl font-bold mb-2">⚡ आज ही आवेदन करें और ₹0 बिजली बिल का लाभ उठाएं!</p>
+              <p className="text-sm opacity-90">Join India's Clean Energy Revolution with PM Surya Ghar</p>
+            </div>
           </div>
         </div>
       </div>
