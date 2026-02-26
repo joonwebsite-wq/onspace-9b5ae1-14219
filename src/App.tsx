@@ -16,16 +16,18 @@ function App() {
     <ErrorBoundary>
       <AuthProvider>
         <HashRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register-admin" element={<RegisterAdminPage />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/jobs" element={<JobPortalPage />} />
-            <Route path="/post-job" element={<PostJobPage />} />
-            <Route path="/job/:id" element={<JobDetailsPage />} />
-          </Routes>
-          <Toaster position="top-right" richColors />
+          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register-admin" element={<RegisterAdminPage />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/jobs" element={<JobPortalPage />} />
+              <Route path="/post-job" element={<PostJobPage />} />
+              <Route path="/job/:id" element={<JobDetailsPage />} />
+            </Routes>
+            <Toaster position="top-right" richColors />
+          </div>
         </HashRouter>
       </AuthProvider>
     </ErrorBoundary>
