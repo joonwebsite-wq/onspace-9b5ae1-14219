@@ -9,6 +9,7 @@ import { JobPortalPage } from '@/pages/JobPortalPage';
 import { PostJobPage } from '@/pages/PostJobPage';
 import { JobDetailsPage } from '@/pages/JobDetailsPage';
 
+// Main application component with routing
 function App() {
   return (
     <AuthProvider>
