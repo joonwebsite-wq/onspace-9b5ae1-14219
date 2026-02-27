@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
@@ -16,55 +15,27 @@ import { LegalDocumentsSection } from '@/components/features/LegalDocumentsSecti
 import { GallerySection } from '@/components/features/GallerySection';
 import { VideoSection } from '@/components/features/VideoSection';
 
-const LoadingFallback = () => (
-  <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-    Loading section...
-  </div>
-);
+console.log('[HOMEPAGE] Component loaded');
 
 export function HomePage() {
+  console.log('[HOMEPAGE] Rendering');
+  
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <Suspense fallback={<LoadingFallback />}>
-        <HeroSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <AboutSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <VacanciesSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <RequirementsSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <UrgencyBanner />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <ApplicationSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <ProcessSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <VideoSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <FAQSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <TestimonialsSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <StateManagersSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <LegalDocumentsSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <GallerySection />
-      </Suspense>
+      <HeroSection />
+      <AboutSection />
+      <VacanciesSection />
+      <RequirementsSection />
+      <UrgencyBanner />
+      <ApplicationSection />
+      <ProcessSection />
+      <VideoSection />
+      <FAQSection />
+      <TestimonialsSection />
+      <StateManagersSection />
+      <LegalDocumentsSection />
+      <GallerySection />
       <Footer />
       <WhatsAppButton />
     </div>
